@@ -35,11 +35,12 @@ function state = ContourUpdate(f, state)
     else
         % if yes, we have an additional point outside the convex
         % hull and we improve the inner approximation
-        out1 = pt_intersect(pti, angle(i), newpt, newangle);
-        out2 = pt_intersect(newpt, newangle, ptj, angle(j));
-        area1 = triangle_area(pt(:,i), newpt, out1);
-        area2 = triangle_area(newpt, pt(:,j), out2);
+        out1 = ContourIntersect(pti, angle(i), newpt, newangle);
+        out2 = ContourIntersect(newpt, newangle, ptj, angle(j));
+        area1 = ContourTriangleArea(pt(:,i), newpt, out1);
+        area2 = ContourTriangleArea(newpt, pt(:,j), out2);
     end
+    % insert the new data at the right place
     angle = [angle(1:i) newangle angle(i+1:n)];
     pt = [pt(:,1:i) newpt pt(:,i+1:n)];
     out = [out(:,1:i-1) out1 out2 out(:,i+1:n)];

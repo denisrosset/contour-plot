@@ -65,8 +65,8 @@ function state = ContourInit(f, angles)
     % compute the outer approximation
     for i = 1:3
         j = mod(i,3) + 1; % i+1
-        out(:,i) = pt_intersect(pt(:,i), angle(i), pt(:,j), angle(j));
-        area(i) = triangle_area(pt(:,i),pt(:,j),out(:,i));
+        out(:,i) = ContourIntersect(pt(:,i), angle(i), pt(:,j), angle(j));
+        area(i) = ContourTriangleArea(pt(:,i),pt(:,j),out(:,i));
     end
     % populate the structure
     state = struct('pt', pt, ...

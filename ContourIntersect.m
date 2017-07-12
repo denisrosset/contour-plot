@@ -1,4 +1,4 @@
-function pt = pt_intersect(x1y1, a, x2y2, b)
+function pt = ContourIntersect(x1y1, a, x2y2, b)
 % [x1;y1] + r1 [cos a;sin a] == [x2;y2] + r2 [cos b; sin b]
     x1 = x1y1(1);
     y1 = x1y1(2);
