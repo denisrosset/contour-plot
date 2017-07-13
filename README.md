@@ -19,10 +19,10 @@ end
 state = ContourInit(@circlef);
 for i = 1:10
 	state = ContourUpdate(@circlef, state);
-	styles = struct;
-	styles.fill = {'', 'FaceColor', [1 0 0], 'FaceAlpha', 0.2, 'LineStyle', 'none'};
-	styles.bezier = {'-', 'Color', [1 0 0]};
-	ContourPlot(state, styles);
+	style = struct;
+	style.fill = {'', 'FaceColor', [1 0 0], 'FaceAlpha', 0.2, 'LineStyle', 'none'};
+	style.bezier = {'-', 'Color', [1 0 0]};
+	ContourPlot(state, style);
 end
 ```
 

@@ -1,12 +1,12 @@
-function ContoursPlot(states, stylesCA)
+function ContoursPlot(states, styles)
 % ContoursPlot - plots a contour
 %
 % INPUT
 %
 % states      Current states of contours
 %
-% stylesCA    Cell array vector of styles
+% styles      Cell array vector of styles
     for s = 1:length(states)
-        ContourPlot(states{s}, stylesCA{s});
+        ContourPlot(states{s}, styles{s});
     end
 end

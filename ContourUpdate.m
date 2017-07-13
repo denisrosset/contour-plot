@@ -21,7 +21,7 @@ function state = ContourUpdate(f, state)
     diff = diff/norm(diff);
     % linear functional is the normal to the tangent
     lin = [diff(2); -diff(1)];
-    newangle = modpi(atan2(lin(2), lin(1))+pi/2);
+    newangle = mod(atan2(lin(2), lin(1))+3*pi/2, pi);
     newpt = f(lin);
     % do we have a new point with a greater value?
     test = abs(dot(lin,newpt) - dot(lin,pti));

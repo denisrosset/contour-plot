@@ -57,10 +57,10 @@ function state = ContourInit(f, angles)
     area = zeros(1, 3);
     % compute initial points in the approximation and the tangent angles
     for i = 1:3
-        a = mod2pi(angles(i));
+        a = mod(angles(i), 2*pi);
         currentpt = f([cos(a); sin(a)]);
         pt(:, i) = currentpt(:);
-        angle(i) = modpi(a + pi/2);
+        angle(i) = mod(a + pi/2, pi);
     end
     % compute the outer approximation
     for i = 1:3
