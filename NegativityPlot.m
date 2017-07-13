@@ -1,5 +1,7 @@
 ind = 1;
+% stylesCA is a cell array of styles (see Contour(s)Plot)
 stylesCA = cell(1, 8);
+% fs is a cell array of functions that maximize a 
 fs = cell(1, 8);
 for level = 1:2
     switch level
