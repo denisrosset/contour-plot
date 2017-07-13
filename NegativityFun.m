@@ -1,7 +1,7 @@
 function f = ContourFun(contourType, level)
     data = load('PNeg.mat');
     P1 = data.PNeg;
-    options = sdpsettings(SedumiOriginalSettings, 'sedumi.eps', 1e-8);
+    options = sdpsettings(SedumiOriginalSettings, 'sedumi.eps', 1e-8, 'verbose', 0);
     Paxby = reshape(permute(P1, [1 3 2 4]), [4 4]);
     Pax = sum(Paxby, 2)/2;
     Pby = sum(Paxby, 1)/2;

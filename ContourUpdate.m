@@ -1,5 +1,5 @@
 function state = ContourUpdate(f, state)
-% ConvexContour - adds a point to a convex set contour
+% ContourUpdate - adds a point to a convex set contour
 %
 % Refines the contour where the area between the inner and outer
 % approximations is the greatest
