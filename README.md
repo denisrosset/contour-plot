@@ -30,7 +30,7 @@ end
 
 The `ContourInit` function creates an approximation using three oracle calls (so, the shape is a triangle), and the approximation is returned in a Matlab struct called `state` which can easily be saved to disk (this is why we provide the functions separately to the functions, as they are more difficult to write to disk).
 
-Subsequent calls to `ContourUpdate` perform a single oracle call to refine the approximation where it is most needed.
+Subsequent calls to `ContourUpdate` perform a single oracle call to refine the approximation where it is most needed (and this update will conveniently not refine the flat parts of the boundary, thus saving time).
 
 In the `Example.m` file, we show how to perform an iterative refinement of a convex set and display it using `ContourPlot`. This last function, `ContourPlot`, takes a `style` struct argument, with the following possible fields:
 
@@ -43,7 +43,7 @@ These fields should contain the parameters passed to `plot` and `fill` in a cell
 
 The `ContoursInit`, `ContoursUpdate` and `ContoursPlot` perform the same operations for a family of convex sets; `ContoursUpdate` will perform a single oracle call to refine the convex set that has currently the worst approximation. See `ExampleMulti.m`.
 
-An example below, which required less than 100 oracles *in total* for the picture.
+An example below, which required less than 100 oracle calls *in total* for the picture.
 
 ![Animation](optimizedanim.gif)
 
