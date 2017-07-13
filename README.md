@@ -3,7 +3,9 @@ Contour(s)Plot
 
 Plots the boundary of 2D convex sets.
 
-The convex sets are each defined by an oracle/function that maximizes a linear functional/inequality and returns a maximizer (i.e. a point in the convex set).
+The convex sets are each defined by an oracle/function that maximizes a linear functional/inequality and returns a maximizer (i.e. a point in the convex set). 
+
+Note: when using YALMIP, linprog, etc..., do not forget to ask for a *maximizer* instead of a minimizer.
 
 Such a function can be (here in a minimal example):
 
