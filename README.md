@@ -28,7 +28,7 @@ for i = 1:10
 end
 ```
 
-The `ContourInit` function creates an approximation using three oracle calls (so, the shape is a triangle), and the approximation is returned in a Matlab struct called `state` which can easily be saved to disk (this is why we provide the functions separately to the functions, as they are more difficult to write to disk).
+The `ContourInit` function creates an approximation using three oracle calls (so, the shape is a triangle), and the approximation is returned in a Matlab struct called `state` which can easily be saved to disk (this is why we provide the oracles separately as separated parameters, they are more difficult to write to disk).
 
 Subsequent calls to `ContourUpdate` perform a single oracle call to refine the approximation where it is most needed (and this update will conveniently not refine the flat parts of the boundary, thus saving time).
 
