@@ -18,21 +18,21 @@ function pt = circlef(lin)
 	pt = [double(x); double(y)];
 end
 
-state = ContourInit(@circlef);
+data = ContourData.fromOracle(@circlef);
 for i = 1:10
-	state = ContourUpdate(@circlef, state);
+    data = data.updatedOracle(@circlef);
 	style = struct;
 	style.fill = {'', 'FaceColor', [1 0 0], 'FaceAlpha', 0.2, 'LineStyle', 'none'};
 	style.bezier = {'-', 'Color', [1 0 0]};
-	ContourPlot(state, style);
+	data.plot(style);
 end
 ```
 
-The `ContourInit` function creates an approximation using three oracle calls (so, the shape is a triangle), and the approximation is returned in a Matlab struct called `state` which can easily be saved to disk (this is why we provide the oracles separately as separated parameters, they are more difficult to write to disk).
+The `ContourData.fromOracle` function creates an approximation using three oracle calls (so, the shape is a triangle), and the approximation is returned in a Matlab struct called `state` which can easily be saved to disk (this is why we provide the oracles separately as separated parameters, they are more difficult to write to disk).
 
-Subsequent calls to `ContourUpdate` perform a single oracle call to refine the approximation where it is most needed (and this update will conveniently not refine the flat parts of the boundary, thus saving time).
+Subsequent calls to `data.updatedOracle` perform a single oracle call to refine the approximation where it is most needed (and this update will conveniently not refine the flat parts of the boundary, thus saving time).
 
-In the `Example.m` file, we show how to perform an iterative refinement of a convex set and display it using `ContourPlot`. This last function, `ContourPlot`, takes a `style` struct argument, with the following possible fields:
+In the `ExampleOracle.m` file, we show how to perform an iterative refinement of a convex set and display it using `data.plot`. This last function, `data.plot`, takes a `style` struct argument, with the following possible fields:
 
 - `inner` plots a 2D inner polytope approximation of the convex set,
 - `outer` plots a 2D outer polytope approximation of the convex set,
@@ -41,9 +41,11 @@ In the `Example.m` file, we show how to perform an iterative refinement of a con
 
 These fields should contain the parameters passed to `plot` and `fill` in a cell array, such as `{'r-'}` for a red line.
 
-The `ContoursInit`, `ContoursUpdate` and `ContoursPlot` perform the same operations for a family of convex sets; `ContoursUpdate` will perform a single oracle call to refine the convex set that has currently the worst approximation. See `ExampleMulti.m`.
+The `ContourDataSet` class performs the same operations for a family of convex sets; `dataset.updatedOracles` will perform a single oracle call to refine the convex set that has currently the worst approximation. See `ExampleMultiOracles.m`.
 
 An example below, which required less than 100 oracle calls *in total* for the picture.
 
 ![Animation](optimizedanim.gif)
 
+It is also possible to use ContourData/ContourDataSet with functions that define convex sets
+according to CVX convention. See `ExampleCVX.m` and `ExampleMultiCVX.m` for a use case.
